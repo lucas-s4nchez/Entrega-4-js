@@ -1,12 +1,28 @@
 :root {
   --color-principal: #d90429;
-  --color-secundario: #edf2f4;
+  --color-secundario: #fff0f3;
+  --rojo-claro: #ffccd5;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
+}
+img {
+  max-width: 100%;
+  object-fit: cover;
+  height: 100%;
+  margin: 0 auto;
+}
+ul {
+  list-style: none;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-normal {
+  font-weight: 400;
 }
 .container {
   width: 95%;
@@ -47,4 +63,90 @@
   border: none;
   border-bottom-right-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+}
+.card {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px 10px;
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.3);
+  background-color: var(--color-secundario);
+}
+.card__image {
+  height: 300px;
+  margin: 0 auto;
+  display: flex;
+}
+.info {
+  padding: 20px 10px;
+}
+.info__title {
+  margin-block: 15px;
+  text-align: center;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.info__tipos {
+  position: absolute;
+  top: 20px;
+}
+.info__tipo {
+  padding: 5px;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+.info__items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.info__attributes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info__abilities {
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+@media (min-width: 576px) {
+  .info__abilities {
+    flex-direction: row;
+
+    align-items: center;
+  }
+}
+.info__ability {
+  font-weight: 300;
+  padding: 5px;
+  width: max-content;
+  background-color: var(--color-principal);
+  color: #fff;
+  border-radius: 5px;
+}
+.info__stats {
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.info__stats-title {
+  margin-bottom: 15px;
+}
+.info__stats-name {
+  padding: 10px 0;
+  font-weight: 700;
+  border-bottom: 2px solid var(--rojo-claro);
+}
+/* .info__stats-name:nth-child(odd) {
+  background-color: #fff;
+} */
+.info__stats-value {
+  font-weight: 400;
 }
