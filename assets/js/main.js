@@ -9,8 +9,14 @@ form.addEventListener("submit", onSubmit);
 async function onSubmit(e) {
   e.preventDefault();
   const pokemonId = inputSearch.value.trim();
-  if (!pokemonId) return;
-  if (pokemonId <= 0 || pokemonId > 905) return;
+  if (!pokemonId) {
+    showAlert("*Ingresa un número");
+    return;
+  }
+  if (pokemonId <= 0 || pokemonId > 905) {
+    showAlert("*Número no válido, debe de ser un número entre 1 y 905");
+    return;
+  }
   const pokemon = await getPokemons(pokemonId);
   container.innerHTML = renderCard(pokemon);
   inputSearch.value = "";
@@ -140,4 +146,11 @@ const bgColor = (tipo) => {
     default:
       break;
   }
+};
+const showAlert = (mensaje) => {
+  container.innerHTML = `
+  <div class="alerta">
+    <p>${mensaje}</p>
+  </div>
+  `;
 };
