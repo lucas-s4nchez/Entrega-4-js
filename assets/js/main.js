@@ -13,12 +13,14 @@ async function onSubmit(e) {
     showAlert("Ingresa un número");
     return;
   }
-  if (pokemonId <= 0 || pokemonId > 905) {
-    showAlert("Número no válido, debe de ser un número entre 1 y 905");
+  showSpinner();
+  const pokemon = await getPokemons(pokemonId);
+  if (pokemon) {
+    renderCard(pokemon);
+    inputSearch.value = "";
     return;
   }
-  const pokemon = await getPokemons(pokemonId);
-  container.innerHTML = renderCard(pokemon);
+  showAlert("El pokemon no existe, intenta con otro número");
   inputSearch.value = "";
 }
 function renderCard(pokemon) {
@@ -36,7 +38,7 @@ function renderCard(pokemon) {
       },
     },
   } = pokemon;
-  return `
+  container.innerHTML = `
       <div class="card">
         <div class="card__image">
           <img
@@ -49,9 +51,9 @@ function renderCard(pokemon) {
             <span class="info__tipos">${types
               .map(
                 (type) =>
-                  `<span class="info__tipo" style="background-color:${bgColor(
-                    type.type.name
-                  )}">${type.type.name}</span>`
+                  `<span class="tipo tipo--${type.type.name}">
+                    ${type.type.name}
+                  </span>`
               )
               .join(" ")}</span>
             <div class="info__attributes">
@@ -86,72 +88,20 @@ function renderCard(pokemon) {
 
   `;
 }
-const bgColor = (tipo) => {
-  switch (tipo) {
-    case "bug":
-      return "#9EAC1A";
-      break;
-    case "dark":
-      return "#2C221B";
-      break;
-    case "dragon":
-      return "#705FC6";
-      break;
-    case "electric":
-      return "#E2A926";
-      break;
-    case "fairy":
-      return "#EAABE5";
-      break;
-    case "fighting":
-      return "#6B3020";
-      break;
-    case "fire":
-      return "#D5471C";
-      break;
-    case "flying":
-      return "#798BD7";
-      break;
-    case "ghost":
-      return "#474388";
-      break;
-    case "grass":
-      return "#409211";
-      break;
-    case "ground":
-      return "#877754";
-      break;
-    case "ice":
-      return "#81DBF0";
-      break;
-    case "normal":
-      return "#908E7E";
-      break;
-    case "poison":
-      return "#854784";
-      break;
-    case "psychic":
-      return "#D1547E";
-      break;
-    case "rock":
-      return "#9E8340";
-      break;
-    case "steel":
-      return "#B0B0BC";
-      break;
-    case "water":
-      return "#2F7ECE";
-      break;
-
-    default:
-      break;
-  }
-};
 const showAlert = (mensaje) => {
   container.innerHTML = `
   <div class="alerta">
   <i class="fa-solid fa-triangle-exclamation"></i>
     <p> ${mensaje}</p>
   </div>
+  `;
+};
+const showSpinner = () => {
+  container.innerHTML = `
+<div class="spinner">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
   `;
 };
