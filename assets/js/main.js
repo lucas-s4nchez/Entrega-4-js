@@ -13,14 +13,14 @@ async function onSubmit(e) {
     showAlert("Ingresa un número");
     return;
   }
-  showSpinner();
+  loadSpinner();
   const pokemon = await getPokemons(pokemonId);
-  if (pokemon) {
-    renderCard(pokemon);
+  if (!pokemon) {
+    showAlert("El pokemon no existe, intenta con otro número");
     inputSearch.value = "";
     return;
   }
-  showAlert("El pokemon no existe, intenta con otro número");
+  renderCard(pokemon);
   inputSearch.value = "";
 }
 function renderCard(pokemon) {
@@ -96,7 +96,7 @@ const showAlert = (mensaje) => {
   </div>
   `;
 };
-const showSpinner = () => {
+const loadSpinner = () => {
   container.innerHTML = `
 <div class="spinner">
   <div class="bounce1"></div>
