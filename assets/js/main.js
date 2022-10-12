@@ -14,6 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
 btnContainer.addEventListener("click", async (e) => {
   const newUrl = e.target.getAttribute("data-url");
   if (e.target.getAttribute("data-url")) {
+    loadSpinner();
     loadPokemons(newUrl);
   }
 });
