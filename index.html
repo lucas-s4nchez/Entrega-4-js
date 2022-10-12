@@ -13,11 +13,15 @@
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body class="container">
-  <h1 class="title">#Buscador Pokemon </h1>
-  <main>
+<body>
+  <header class="header">
+    <nav class="container navbar">
+      <a class="navbar__icon" href="./index.html">Pokedex</a>
+    </nav>
+  </header>
+  <main class="container">
     <form class="form" id="form">
-      <input class="form__input" type="number" id="search" name="pizza-id" placeholder="Busca un pokemon 🔍">
+      <input class="form__input" type="text" id="search" name="pokemon" placeholder="Busca un pokemon 🔍 ">
       <input type="submit" class="form__submit" id="submit" value="Buscar">
     </form>
     <div class="card-container" id="container"></div>

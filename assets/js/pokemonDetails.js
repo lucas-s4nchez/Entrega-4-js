@@ -28,7 +28,6 @@ function renderPokemon(pokemon) {
   container.innerHTML = `
   <div class="bg-${types[0].type.name} pt-5">
       <div class="card card--big">
-        <a href="./index.html"class="btn btn--fixed link "><i class="fa-solid fa-arrow-left"></i> Volver</a>
         <div class="card__image card-image--big">
           <img
             src="${front_default}"

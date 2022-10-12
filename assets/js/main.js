@@ -7,7 +7,10 @@ const btnContainer = document.getElementById("btn-container");
 
 const url = `https://pokeapi.co/api/v2/pokemon`;
 
-document.addEventListener("DOMContentLoaded", loadPokemons(url));
+window.addEventListener("DOMContentLoaded", () => {
+  loadSpinner();
+  loadPokemons(url);
+});
 btnContainer.addEventListener("click", async (e) => {
   const newUrl = e.target.getAttribute("data-url");
   if (e.target.getAttribute("data-url")) {
@@ -30,10 +33,10 @@ function renderBtn(data) {
   btnContainer.innerHTML = `
   ${
     previous
-      ? `<button class='btn' data-url='${previous}'>Anterior</button>`
+      ? `<a class='btn link' href="#" data-url='${previous}'>Anterior</a>`
       : ""
   }
-  ${next ? `<button class='btn' data-url='${next}'>Siguiente</button>` : ""}
+  ${next ? `<a class='btn link' href="#" data-url='${next}'>Siguiente</a>` : ""}
   `;
 }
 async function onSubmit(e) {
@@ -41,6 +44,7 @@ async function onSubmit(e) {
   const pokemonId = inputSearch.value.trim();
   if (!pokemonId) {
     showAlert("Ingresa un número");
+    btnContainer.innerHTML = "";
     return;
   }
   loadSpinner();
@@ -48,9 +52,11 @@ async function onSubmit(e) {
   if (!pokemon) {
     showAlert("El pokemon no existe, intenta con otro número");
     inputSearch.value = "";
+    btnContainer.innerHTML = "";
     return;
   }
-  renderCard(pokemon);
+  container.innerHTML = renderCard(pokemon);
+  btnContainer.innerHTML = "";
   inputSearch.value = "";
 }
 function renderCard(pokemon) {
