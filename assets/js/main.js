@@ -16,13 +16,11 @@ btnContainer.addEventListener("click", async (e) => {
 });
 form.addEventListener("submit", onSubmit);
 
-//New section
 async function loadPokemons(url) {
   const data = await getPokemons(url);
   renderAllPokemons(data.pokemons);
   renderBtn(data);
 }
-
 function renderAllPokemons(pokemons) {
   const cards = pokemons.map((pokemon) => renderCard(pokemon)).join("");
   container.innerHTML = cards;
@@ -67,6 +65,7 @@ function renderCard(pokemon) {
     },
   } = pokemon;
   return `
+  <a class="link" href="./pokemonDetails.html?id=${id}">
       <div class="card bg-${types[0].type.name}">
         <div class="card__image">
           <img
@@ -88,7 +87,7 @@ function renderCard(pokemon) {
         </div>
 
       </div>
-
+  </a>
   `;
 }
 const showAlert = (mensaje) => {

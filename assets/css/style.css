@@ -24,10 +24,19 @@ ul {
 .font-normal {
   font-weight: 400;
 }
+.pt-5 {
+  padding-top: 50px;
+}
+.btn--fixed {
+  position: absolute;
+  top: -20px;
+  left: 10px;
+}
 .container {
   width: 95%;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: 100vh;
 }
 .title {
   display: block;
@@ -80,13 +89,23 @@ ul {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
 }
+.link {
+  text-decoration: none;
+  color: inherit;
+}
 .card {
   position: relative;
   width: 100%;
   padding: 20px 10px;
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.3);
-  background-color: var(--color-secundario);
   border-radius: 5px;
+}
+.card--big {
+  width: 100%;
+  max-width: 800px;
+  min-height: 100vh;
+  margin: auto auto;
+  box-shadow: unset;
 }
 .bg-bug {
   background-color: #9eac1a60;
@@ -146,6 +165,17 @@ ul {
   height: 200px;
   margin: 0 auto;
   display: flex;
+}
+.card-image--big {
+  height: 400px;
+  margin: 0 auto;
+  display: flex;
+}
+
+@media (max-width: 576px) {
+  .card-image--big {
+    height: 300px;
+  }
 }
 
 .info__title {
@@ -242,6 +272,63 @@ ul {
   border-radius: 5px;
   cursor: pointer;
 }
+.info__attributes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info__abilities {
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+@media (min-width: 576px) {
+  .info__abilities {
+    flex-direction: row;
+
+    align-items: center;
+  }
+}
+.info__ability {
+  font-weight: 300;
+  padding: 5px;
+  width: max-content;
+  background-color: var(--color-principal);
+  color: #fff;
+  border-radius: 5px;
+}
+/* .card-container{
+
+} */
+.table {
+  display: block;
+  width: 100%;
+  max-width: max-content;
+  overflow-x: scroll;
+  border-collapse: collapse;
+}
+.tbody {
+  width: 900px;
+  background-color: var(--rojo-claro);
+}
+.tbody__td {
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.thead {
+  background-color: var(--color-principal);
+  width: 900px;
+}
+.thead__th {
+  min-width: 130px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+}
+
 .alerta {
   display: flex;
   align-items: center;
