@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokedex</title>
+  <title>Document</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
@@ -19,16 +20,9 @@
       <a class="navbar__icon" href="./index.html">Pokedex</a>
     </nav>
   </header>
-  <main class="container">
-    <form class="form" id="form">
-      <input class="form__input" type="text" id="search" name="pokemon" placeholder="Busca un pokemon 🔍 ">
-      <input type="submit" class="form__submit" id="submit" value="Buscar">
-    </form>
-    <div class="card-container" id="container"></div>
-    <div class="btn-container" id="btn-container"></div>
+  <div class="pokemon-container" id="container"></div>
 
-  </main>
-  <script src="./assets/js/main.js" type="module"></script>
+  <script src="./assets/js/pokemonDetails.js" type="module"></script>
 </body>
 
 </html>
