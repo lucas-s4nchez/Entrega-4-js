@@ -1,11 +1,43 @@
-import { getPokemons } from "./request.js";
+import { getPokemon, getPokemons } from "./request.js";
 
 const form = document.getElementById("form");
 const inputSearch = document.getElementById("search");
 const container = document.getElementById("container");
+const btnContainer = document.getElementById("btn-container");
 
+const url = `https://pokeapi.co/api/v2/pokemon`;
+
+document.addEventListener("DOMContentLoaded", loadPokemons(url));
+btnContainer.addEventListener("click", async (e) => {
+  const newUrl = e.target.getAttribute("data-url");
+  if (e.target.getAttribute("data-url")) {
+    loadPokemons(newUrl);
+  }
+});
 form.addEventListener("submit", onSubmit);
 
+//New section
+async function loadPokemons(url) {
+  const data = await getPokemons(url);
+  renderAllPokemons(data.pokemons);
+  renderBtn(data);
+}
+
+function renderAllPokemons(pokemons) {
+  const cards = pokemons.map((pokemon) => renderCard(pokemon)).join("");
+  container.innerHTML = cards;
+}
+function renderBtn(data) {
+  const { next, previous } = data;
+  btnContainer.innerHTML = `
+  ${
+    previous
+      ? `<button class='btn' data-url='${previous}'>Anterior</button>`
+      : ""
+  }
+  ${next ? `<button class='btn' data-url='${next}'>Siguiente</button>` : ""}
+  `;
+}
 async function onSubmit(e) {
   e.preventDefault();
   const pokemonId = inputSearch.value.trim();
@@ -14,7 +46,7 @@ async function onSubmit(e) {
     return;
   }
   loadSpinner();
-  const pokemon = await getPokemons(pokemonId);
+  const pokemon = await getPokemon(pokemonId);
   if (!pokemon) {
     showAlert("El pokemon no existe, intenta con otro número");
     inputSearch.value = "";
@@ -26,20 +58,16 @@ async function onSubmit(e) {
 function renderCard(pokemon) {
   const {
     name,
-    abilities,
     id,
-    stats,
-    height,
     types,
-    weight,
     sprites: {
       other: {
         "official-artwork": { front_default },
       },
     },
   } = pokemon;
-  container.innerHTML = `
-      <div class="card">
+  return `
+      <div class="card bg-${types[0].type.name}">
         <div class="card__image">
           <img
             src="${front_default}"
@@ -56,31 +84,6 @@ function renderCard(pokemon) {
                   </span>`
               )
               .join(" ")}</span>
-            <div class="info__attributes">
-              <p class="font-bold">Weight: 
-                <span class="font-normal">${weight / 10}kg</span>
-              </p>
-              <p class="font-bold">Height: 
-                <span class="font-normal">${height / 10}m</span>
-              </p>
-            </div>
-            <div class="info__abilities"> Abilities:
-            ${abilities
-              .map(
-                (ability) =>
-                  `<span class="info__ability"> ${ability.ability.name}</span>`
-              )
-              .join("")}
-            </div>
-            <div class="info__stats"> <span class="info__stats-title">Stats:</span>
-            ${stats
-              .map(
-                (item) =>
-                  `<p class="info__stats-name">${item.stat.name}: 
-                    <span class="info__stats-value">${item.base_stat}</span>
-                  </p>`
-              )
-              .join("")}</div>
           </div>
         </div>
 

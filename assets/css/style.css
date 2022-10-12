@@ -75,24 +75,79 @@ ul {
   border-bottom-right-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 }
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
 .card {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  margin: 40px auto;
   padding: 20px 10px;
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.3);
   background-color: var(--color-secundario);
   border-radius: 5px;
 }
+.bg-bug {
+  background-color: #9eac1a60;
+}
+.bg-dark {
+  background-color: #2c221b60;
+}
+.bg-dragon {
+  background-color: #705fc660;
+}
+.bg-electric {
+  background-color: #e2a92660;
+}
+.bg-fairy {
+  background-color: #eaabe560;
+}
+.bg-fighting {
+  background-color: #6b302060;
+}
+.bg-fire {
+  background-color: #d5471c60;
+}
+.bg-flying {
+  background-color: #798bd760;
+}
+.bg-ghost {
+  background-color: #47438860;
+}
+.bg-grass {
+  background-color: #40921160;
+}
+.bg-ground {
+  background-color: #87775460;
+}
+.bg-ice {
+  background-color: #81dbf060;
+}
+.bg-normal {
+  background-color: #908e7e60;
+}
+.bg-poison {
+  background-color: #85478460;
+}
+.bg-psychic {
+  background-color: #d1547e60;
+}
+.bg-rock {
+  background-color: #9e834060;
+}
+.bg-steel {
+  background-color: #b0b0bc60;
+}
+.bg-water {
+  background-color: #2f7ece60;
+}
 .card__image {
-  height: 300px;
+  height: 200px;
   margin: 0 auto;
   display: flex;
 }
-.info {
-  padding: 20px 10px;
-}
+
 .info__title {
   margin-block: 15px;
   text-align: center;
@@ -172,49 +227,20 @@ ul {
   flex-direction: column;
   gap: 15px;
 }
-.info__attributes {
+.btn-container {
+  margin-block: 2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
-
-.info__abilities {
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-@media (min-width: 576px) {
-  .info__abilities {
-    flex-direction: row;
-
-    align-items: center;
-  }
-}
-.info__ability {
-  font-weight: 300;
-  padding: 5px;
-  width: max-content;
+.btn {
+  padding: 5px 10px;
   background-color: var(--color-principal);
-  color: #fff;
+  color: var(--color-secundario);
+  border: none;
   border-radius: 5px;
-}
-.info__stats {
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-.info__stats-title {
-  margin-bottom: 15px;
-}
-.info__stats-name {
-  padding: 10px 0;
-  font-weight: 700;
-  border-bottom: 2px solid var(--rojo-claro);
-}
-.info__stats-value {
-  font-weight: 400;
+  cursor: pointer;
 }
 .alerta {
   display: flex;
