@@ -4,8 +4,8 @@ import { getPokemon } from "./request.js";
 
 window.addEventListener("load", async () => {
   const url = new URLSearchParams(window.location.search);
-  const pokemon = parseInt(url.get("id"));
-  const currentPokemon = await getPokemon(pokemon);
+  const pokemonId = parseInt(url.get("id"));
+  const currentPokemon = await getPokemon(pokemonId);
   renderPokemon(currentPokemon);
   console.log(currentPokemon);
 });
